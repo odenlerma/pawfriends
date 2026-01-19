@@ -85,7 +85,7 @@ export default function Header() {
       await signOut()
       resetDogStore()
       navigate(ROUTES.LANDING)
-    } catch (error) {
+    } catch {
       // Error handled in store
     }
   }

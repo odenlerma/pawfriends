@@ -172,5 +172,11 @@
     "permission_mode": "acceptEdits",
     "hook_event_name": "UserPromptSubmit",
     "prompt": "commit all changes and add meaningful description"
+  },
+  {
+    "session_id": "7cd34c5d-c75c-4aa4-8064-4eff0226949b",
+    "permission_mode": "acceptEdits",
+    "hook_event_name": "UserPromptSubmit",
+    "prompt": "error encountered: "
   }
 ]

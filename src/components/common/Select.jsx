@@ -2,7 +2,7 @@
 // PawFriends - Select Component
 // ==============================================
 
-import { forwardRef } from 'react'
+import { forwardRef, useId } from 'react'
 import './Select.scss'
 
 const ChevronIcon = () => (
@@ -25,7 +25,8 @@ const Select = forwardRef(function Select(
   },
   ref
 ) {
-  const selectId = id || `select-${Math.random().toString(36).substring(7)}`
+  const generatedId = useId()
+  const selectId = id || generatedId
 
   const wrapperClasses = [
     'select-wrapper',

@@ -69,7 +69,7 @@ export default function SwipeStack({
 
         try {
           await onSwipe?.(swipedDog.id, action)
-        } catch (error) {
+        } catch {
           // Error handled in parent
         }
       }, 300)

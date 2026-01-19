@@ -76,7 +76,7 @@ export default function Matching() {
         showError('Something went wrong. Please try again.')
       }
     },
-    [swipe, candidates.length, activeDog?.id, fetchCandidates, showError]
+    [swipe, candidates.length, activeDog, fetchCandidates, showError]
   )
 
   const handleRefresh = () => {

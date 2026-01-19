@@ -79,7 +79,7 @@ export default function EditPet() {
         }))
         setImages(existingImages)
         setOriginalUrls(dog.photo_urls || [])
-      } catch (error) {
+      } catch {
         setSubmitError('Failed to load pet data')
       } finally {
         setLoadingDog(false)

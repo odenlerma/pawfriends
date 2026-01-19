@@ -2,7 +2,7 @@
 // PawFriends - Input Component
 // ==============================================
 
-import { forwardRef } from 'react'
+import { forwardRef, useId } from 'react'
 import './Input.scss'
 
 const Input = forwardRef(function Input(
@@ -20,7 +20,8 @@ const Input = forwardRef(function Input(
   },
   ref
 ) {
-  const inputId = id || `input-${Math.random().toString(36).substring(7)}`
+  const generatedId = useId()
+  const inputId = id || generatedId
 
   const wrapperClasses = [
     'input-wrapper',

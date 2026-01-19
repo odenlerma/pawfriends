@@ -2,7 +2,7 @@
 // PawFriends - Textarea Component
 // ==============================================
 
-import { forwardRef } from 'react'
+import { forwardRef, useId } from 'react'
 import './Textarea.scss'
 
 const Textarea = forwardRef(function Textarea(
@@ -21,7 +21,8 @@ const Textarea = forwardRef(function Textarea(
   },
   ref
 ) {
-  const textareaId = id || `textarea-${Math.random().toString(36).substring(7)}`
+  const generatedId = useId()
+  const textareaId = id || generatedId
   const currentLength = value?.length || 0
 
   const wrapperClasses = [

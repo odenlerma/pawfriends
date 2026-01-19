@@ -2,10 +2,17 @@
 // PawFriends - MatchModal Component
 // ==============================================
 
-import { useEffect, useState } from 'react'
 import Modal from './Modal'
 import Button from './Button'
 import './MatchModal.scss'
+
+// Pre-generate confetti data at module level (not during render)
+const CONFETTI_COLORS = ['#FF6B35', '#FF8E9B', '#4ECDC4', '#FF6B6B', '#FFB347']
+const CONFETTI_PIECES = Array.from({ length: 50 }).map(() => ({
+  left: `${Math.random() * 100}%`,
+  animationDelay: `${Math.random() * 0.5}s`,
+  backgroundColor: CONFETTI_COLORS[Math.floor(Math.random() * CONFETTI_COLORS.length)],
+}))
 
 const HeartIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor">
@@ -21,16 +28,8 @@ export default function MatchModal({
   onViewMatches,
   onKeepSwiping,
 }) {
-  const [showConfetti, setShowConfetti] = useState(false)
-
-  useEffect(() => {
-    if (isOpen) {
-      setShowConfetti(true)
-      // Auto-hide confetti after animation
-      const timer = setTimeout(() => setShowConfetti(false), 3000)
-      return () => clearTimeout(timer)
-    }
-  }, [isOpen])
+  // Confetti shows when modal is open (CSS handles the animation duration)
+  const showConfetti = isOpen
 
   if (!match || !myDog) return null
 
@@ -50,17 +49,11 @@ export default function MatchModal({
       {/* Confetti */}
       {showConfetti && (
         <div className="match-modal__confetti">
-          {Array.from({ length: 50 }).map((_, i) => (
+          {CONFETTI_PIECES.map((style, i) => (
             <div
               key={i}
               className="match-modal__confetti-piece"
-              style={{
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 0.5}s`,
-                backgroundColor: ['#FF6B35', '#FF8E9B', '#4ECDC4', '#FF6B6B', '#FFB347'][
-                  Math.floor(Math.random() * 5)
-                ],
-              }}
+              style={style}
             />
           ))}
         </div>
