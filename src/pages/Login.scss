@@ -1,0 +1,124 @@
+// ==============================================
+// PawFriends - Login Page Styles
+// ==============================================
+
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.login {
+  min-height: 100vh;
+  @include flex-center;
+  padding: $spacing-4;
+  background: $color-cream;
+  background-image:
+    radial-gradient(circle at 0% 100%, rgba($color-pink, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 100% 0%, rgba($color-teal, 0.15) 0%, transparent 50%);
+
+  &__container {
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-8;
+  }
+
+  // Logo
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2;
+    text-decoration: none;
+    animation: slideUp 0.5s ease forwards;
+  }
+
+  &__logo-icon {
+    @include flex-center;
+    width: 48px;
+    height: 48px;
+    color: $color-orange;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__logo-text {
+    @include font-display;
+    font-size: $font-size-3xl;
+    color: $color-orange;
+
+    span {
+      color: $color-pink;
+    }
+  }
+
+  // Card
+  &__card {
+    @include card;
+    width: 100%;
+    padding: $spacing-8;
+    animation: slideUp 0.5s ease forwards;
+    animation-delay: 0.1s;
+    opacity: 0;
+    transition: all 0.3s ease;
+
+    &--success {
+      background: linear-gradient(135deg, rgba($color-teal, 0.05), rgba($color-white, 1));
+    }
+  }
+
+  &__success {
+    @include flex-center;
+    min-height: 100px;
+    animation: fadeIn 0.3s ease forwards;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: $spacing-6;
+  }
+
+  &__title {
+    @include font-display;
+    font-size: $font-size-2xl;
+    margin-bottom: $spacing-2;
+  }
+
+  &__subtitle {
+    @include text-base;
+    color: $color-gray;
+    margin: 0;
+  }
+
+  // Form
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-5;
+  }
+
+  // Footer
+  &__footer {
+    text-align: center;
+    margin-top: $spacing-6;
+    padding-top: $spacing-6;
+    border-top: 1px solid $color-gray-lighter;
+
+    p {
+      @include text-sm;
+      color: $color-gray;
+      margin: 0;
+    }
+  }
+
+  &__link {
+    color: $color-orange;
+    font-weight: $font-weight-semibold;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

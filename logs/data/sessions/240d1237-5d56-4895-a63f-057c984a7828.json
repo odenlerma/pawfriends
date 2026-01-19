@@ -1,0 +1,7 @@
+{
+  "session_id": "240d1237-5d56-4895-a63f-057c984a7828",
+  "prompts": [
+    "/init-plan # Objective\nBuild a web app called **PawFriends** where users can:\n\n- Sign up and log in\n- Add their pets\n- Match their pets with others\n\nUse the provided logo for branding and frontend design.\n\n# Requirements\n- Implement user authentication (signup, login)\n- Allow users to add pets\n- Enable pet matching with other pets (tinder style swipe left and right)\n- Integrate the supplied logo into both branding and frontend design ",
+    "1. I attached the logo as requested\n2. Dogs only\n3. supabase, use mcp\n4. file upload service\n5. Dogs to Dogs only. female should be matched with male"
+  ]
+}

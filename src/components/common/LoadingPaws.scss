@@ -1,0 +1,97 @@
+// ==============================================
+// PawFriends - LoadingPaws Styles
+// ==============================================
+
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.loading-paws {
+  @include flex-column;
+  @include flex-center;
+  gap: $spacing-3;
+
+  &__track {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2;
+  }
+
+  &__paw {
+    display: flex;
+    color: $color-orange;
+    opacity: 0;
+    animation: pawStep 0.8s ease-in-out infinite;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    // Alternate paw rotation for natural walking feel (on SVG to avoid transform conflict)
+    &:nth-child(odd) svg {
+      transform: rotate(-15deg);
+    }
+
+    &:nth-child(even) svg {
+      transform: rotate(15deg);
+    }
+  }
+
+  &__label {
+    @include font-body;
+    font-size: $font-size-sm;
+    color: $color-gray-dark;
+    font-weight: $font-weight-medium;
+  }
+
+  // Size variants
+  &--sm {
+    .loading-paws__track {
+      gap: $spacing-1;
+    }
+
+    .loading-paws__paw {
+      width: 16px;
+      height: 16px;
+    }
+
+    .loading-paws__label {
+      font-size: $font-size-xs;
+    }
+  }
+
+  &--md {
+    .loading-paws__paw {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &--lg {
+    .loading-paws__track {
+      gap: $spacing-3;
+    }
+
+    .loading-paws__paw {
+      width: 36px;
+      height: 36px;
+    }
+
+    .loading-paws__label {
+      font-size: $font-size-base;
+    }
+  }
+
+  // Reduced motion support
+  @media (prefers-reduced-motion: reduce) {
+    .loading-paws__paw {
+      animation: none;
+      opacity: 1;
+
+      &:nth-child(1) { opacity: 1; }
+      &:nth-child(2) { opacity: 0.75; }
+      &:nth-child(3) { opacity: 0.5; }
+      &:nth-child(4) { opacity: 0.25; }
+    }
+  }
+}

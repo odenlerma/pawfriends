@@ -1,0 +1,184 @@
+// ==============================================
+// PawFriends - ImageUpload Styles
+// ==============================================
+
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.image-upload {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-3;
+
+  // Label
+  &__label {
+    @include font-body;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    color: $color-gray-dark;
+  }
+
+  // Grid of images
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: $spacing-3;
+
+    @include md {
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+  }
+
+  // Image preview container
+  &__preview {
+    position: relative;
+    aspect-ratio: 1;
+    border-radius: $radius-lg;
+    overflow: hidden;
+    box-shadow: $shadow-sm;
+
+    &:first-child {
+      grid-column: span 2;
+      grid-row: span 2;
+
+      @include max-sm {
+        grid-column: span 1;
+        grid-row: span 1;
+      }
+    }
+
+    &:hover {
+      .image-upload__remove {
+        opacity: 1;
+      }
+    }
+  }
+
+  // Image itself
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform $transition-base;
+
+    .image-upload__preview:hover & {
+      transform: scale(1.05);
+    }
+  }
+
+  // Remove button
+  &__remove {
+    position: absolute;
+    top: $spacing-2;
+    right: $spacing-2;
+    @include flex-center;
+    width: 32px;
+    height: 32px;
+    background: rgba($color-black, 0.6);
+    border-radius: $radius-full;
+    color: $color-white;
+    opacity: 0;
+    transition: all $transition-fast;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    &:hover {
+      background: $color-heart;
+      transform: scale(1.1);
+    }
+
+    @include focus-ring;
+
+    // Always show on touch devices
+    @media (hover: none) {
+      opacity: 1;
+    }
+  }
+
+  // Main badge
+  &__badge {
+    position: absolute;
+    bottom: $spacing-2;
+    left: $spacing-2;
+    padding: $spacing-1 $spacing-2;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    background: $gradient-primary;
+    color: $color-white;
+    border-radius: $radius-full;
+    box-shadow: $shadow-sm;
+  }
+
+  // Dropzone button
+  &__dropzone {
+    @include flex-center;
+    flex-direction: column;
+    gap: $spacing-2;
+    aspect-ratio: 1;
+    background: $color-white;
+    border: 2px dashed $color-gray-lighter;
+    border-radius: $radius-lg;
+    color: $color-gray;
+    cursor: pointer;
+    transition: all $transition-fast;
+
+    &:hover {
+      border-color: $color-orange;
+      color: $color-orange;
+      background: rgba($color-orange, 0.05);
+    }
+
+    @include focus-ring;
+  }
+
+  &--drag-active &__dropzone {
+    border-color: $color-orange;
+    color: $color-orange;
+    background: rgba($color-orange, 0.1);
+    border-style: solid;
+  }
+
+  &__dropzone-icon {
+    @include flex-center;
+    width: 40px;
+    height: 40px;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__dropzone-text {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+  }
+
+  // Hidden file input
+  &__input {
+    @include sr-only;
+  }
+
+  // Error message
+  &__error {
+    @include text-sm;
+    color: $color-error;
+    display: flex;
+    align-items: center;
+    gap: $spacing-1;
+  }
+
+  // Hint
+  &__hint {
+    @include text-sm;
+    color: $color-gray;
+  }
+
+  // Error state
+  &--error &__dropzone {
+    border-color: $color-error;
+  }
+}

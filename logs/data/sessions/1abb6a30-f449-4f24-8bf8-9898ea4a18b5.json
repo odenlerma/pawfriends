@@ -1,0 +1,8 @@
+{
+  "session_id": "1abb6a30-f449-4f24-8bf8-9898ea4a18b5",
+  "prompts": [
+    "there is a loader in '/Users/lmph/Desktop/audruey/pawfriends/src/App.jsx' that is unnecessary",
+    "error message looks like this on image. response body looks like this ",
+    "Set up a deployment workflow for this repository using GitHub Actions."
+  ]
+}

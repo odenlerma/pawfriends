@@ -1,0 +1,41 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node:*)",
+      "Bash(echo:*)",
+      "Bash(find:*)",
+      "Bash(tree:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)",
+      "mcp__supabase__list_tables",
+      "mcp__supabase__get_storage_config",
+      "mcp__supabase__list_storage_buckets",
+      "mcp__supabase__get_project_url",
+      "mcp__supabase__search_docs",
+      "mcp__supabase__get_publishable_keys",
+      "mcp__supabase__list_migrations",
+      "mcp__supabase__apply_migration",
+      "Skill(frontend-design)",
+      "Bash(xargs:*)",
+      "Bash(npm test:*)",
+      "Bash(wc:*)",
+      "Bash(npm --version:*)",
+      "Bash(grep:*)",
+      "Bash(git -C /Users/lmph/Desktop/audruey/pawfriends log --oneline -10)"
+    ],
+    "deny": []
+  },
+  "enableAllProjectMcpServers": true,
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/user_prompt_submit.cjs --log-only --store-last-prompt"
+          }
+        ]
+      }
+    ]
+  }
+}

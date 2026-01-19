@@ -1,0 +1,218 @@
+// ==============================================
+// PawFriends - Button Styles
+// ==============================================
+
+@use 'sass:color';
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.btn {
+  @include button-base;
+  position: relative;
+  padding: $spacing-3 $spacing-6;
+  font-size: $font-size-base;
+  border-radius: $radius-full;
+  overflow: hidden;
+
+  // Shimmer effect on hover
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: left 0.5s ease;
+  }
+
+  &:hover::before {
+    left: 100%;
+  }
+
+  // Variants
+  &--primary {
+    background: $gradient-primary;
+    color: $color-white;
+    box-shadow: $shadow-md, 0 4px 16px rgba($color-orange, 0.25);
+
+    &:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: $shadow-lg, 0 8px 24px rgba($color-orange, 0.3);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+      box-shadow: $shadow-sm, 0 2px 8px rgba($color-orange, 0.2);
+    }
+  }
+
+  &--secondary {
+    background: $color-white;
+    color: $color-orange;
+    border: 2px solid $color-orange;
+    box-shadow: $shadow-sm;
+
+    &:hover:not(:disabled) {
+      background: $color-orange;
+      color: $color-white;
+      transform: translateY(-2px);
+      box-shadow: $shadow-md;
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+    }
+  }
+
+  &--ghost {
+    background: transparent;
+    color: $color-gray-dark;
+
+    &:hover:not(:disabled) {
+      background: rgba($color-orange, 0.1);
+      color: $color-orange;
+    }
+  }
+
+  &--danger {
+    background: $color-heart;
+    color: $color-white;
+    box-shadow: $shadow-md, 0 4px 16px rgba($color-heart, 0.25);
+
+    &:hover:not(:disabled) {
+      background: color.adjust($color-heart, $lightness: -5%);
+      transform: translateY(-2px);
+    }
+  }
+
+  &--teal {
+    background: $gradient-secondary;
+    color: $color-white;
+    box-shadow: $shadow-md, 0 4px 16px rgba($color-teal, 0.25);
+
+    &:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: $shadow-lg, 0 8px 24px rgba($color-teal, 0.3);
+    }
+  }
+
+  // Sizes
+  &--sm {
+    padding: $spacing-2 $spacing-4;
+    font-size: $font-size-sm;
+  }
+
+  &--lg {
+    padding: $spacing-4 $spacing-8;
+    font-size: $font-size-lg;
+  }
+
+  &--xl {
+    padding: $spacing-5 $spacing-10;
+    font-size: $font-size-xl;
+  }
+
+  // Modifiers
+  &--full-width {
+    width: 100%;
+  }
+
+  &--icon-only {
+    padding: $spacing-3;
+    aspect-ratio: 1;
+
+    &.btn--sm {
+      padding: $spacing-2;
+    }
+
+    &.btn--lg {
+      padding: $spacing-4;
+    }
+  }
+
+  &--loading {
+    pointer-events: none;
+  }
+
+  // Elements
+  &__text {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+
+    svg {
+      width: 1.25em;
+      height: 1.25em;
+    }
+
+    &--left {
+      margin-right: $spacing-2;
+    }
+
+    &--right {
+      margin-left: $spacing-2;
+    }
+  }
+
+  &__paws {
+    display: flex;
+    align-items: center;
+    gap: 0.25em;
+  }
+
+  &__paw {
+    width: 1em;
+    height: 1em;
+    display: flex;
+    animation: btnPawStep 0.8s ease-in-out infinite;
+
+    &:nth-child(1) {
+      transform: rotate(-10deg);
+    }
+
+    &:nth-child(2) {
+      transform: rotate(10deg);
+      animation-delay: 0.4s;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  // Focus state
+  @include focus-ring;
+
+  // Reduced motion support
+  @media (prefers-reduced-motion: reduce) {
+    .btn__paw {
+      animation: none;
+      opacity: 0.7;
+    }
+  }
+}
+
+@keyframes btnPawStep {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}

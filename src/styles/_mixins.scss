@@ -1,0 +1,599 @@
+// ==============================================
+// PawFriends Design System - Mixins
+// ==============================================
+
+@use 'variables' as *;
+
+// ---------------------------------------------
+// Responsive Breakpoints
+// ---------------------------------------------
+@mixin xs {
+  @media (min-width: $breakpoint-xs) {
+    @content;
+  }
+}
+
+@mixin sm {
+  @media (min-width: $breakpoint-sm) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (min-width: $breakpoint-md) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-width: $breakpoint-lg) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (min-width: $breakpoint-xl) {
+    @content;
+  }
+}
+
+@mixin xxl {
+  @media (min-width: $breakpoint-2xl) {
+    @content;
+  }
+}
+
+// Max-width (mobile-first reverse)
+@mixin max-sm {
+  @media (max-width: #{$breakpoint-sm - 1px}) {
+    @content;
+  }
+}
+
+@mixin max-md {
+  @media (max-width: #{$breakpoint-md - 1px}) {
+    @content;
+  }
+}
+
+@mixin max-lg {
+  @media (max-width: #{$breakpoint-lg - 1px}) {
+    @content;
+  }
+}
+
+// ---------------------------------------------
+// Typography
+// ---------------------------------------------
+@mixin font-display {
+  font-family: $font-display;
+  font-weight: $font-weight-semibold;
+  letter-spacing: $letter-spacing-tight;
+}
+
+@mixin font-body {
+  font-family: $font-body;
+  font-weight: $font-weight-regular;
+  letter-spacing: $letter-spacing-base;
+}
+
+@mixin heading-1 {
+  @include font-display;
+  font-size: $font-size-4xl;
+  line-height: $line-height-tight;
+
+  @include md {
+    font-size: $font-size-5xl;
+  }
+}
+
+@mixin heading-2 {
+  @include font-display;
+  font-size: $font-size-3xl;
+  line-height: $line-height-tight;
+
+  @include md {
+    font-size: $font-size-4xl;
+  }
+}
+
+@mixin heading-3 {
+  @include font-display;
+  font-size: $font-size-2xl;
+  line-height: $line-height-tight;
+
+  @include md {
+    font-size: $font-size-3xl;
+  }
+}
+
+@mixin heading-4 {
+  @include font-display;
+  font-size: $font-size-xl;
+  line-height: $line-height-tight;
+
+  @include md {
+    font-size: $font-size-2xl;
+  }
+}
+
+@mixin text-lg {
+  font-size: $font-size-lg;
+  line-height: $line-height-relaxed;
+}
+
+@mixin text-base {
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+}
+
+@mixin text-sm {
+  font-size: $font-size-sm;
+  line-height: $line-height-base;
+}
+
+@mixin text-xs {
+  font-size: $font-size-xs;
+  line-height: $line-height-base;
+}
+
+// ---------------------------------------------
+// Layout Utilities
+// ---------------------------------------------
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-start {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin absolute-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+@mixin container {
+  width: 100%;
+  max-width: $max-content-width;
+  margin: 0 auto;
+  padding: 0 $spacing-4;
+
+  @include md {
+    padding: 0 $spacing-6;
+  }
+
+  @include lg {
+    padding: 0 $spacing-8;
+  }
+}
+
+// ---------------------------------------------
+// Visual Effects
+// ---------------------------------------------
+@mixin card {
+  background: $color-white;
+  border-radius: $radius-xl;
+  box-shadow: $shadow-card;
+  transition: box-shadow $transition-base, transform $transition-base;
+
+  &:hover {
+    box-shadow: $shadow-card-hover;
+  }
+}
+
+@mixin card-interactive {
+  @include card;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+@mixin glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+@mixin gradient-text($gradient) {
+  background: $gradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin line-clamp($lines) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// ---------------------------------------------
+// Button Base
+// ---------------------------------------------
+@mixin button-base {
+  @include font-body;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-2;
+  font-weight: $font-weight-semibold;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all $transition-base;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+@mixin button-primary {
+  @include button-base;
+  background: $gradient-primary;
+  color: $color-white;
+  border-radius: $radius-full;
+  box-shadow: $shadow-md, $shadow-glow-orange;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: $shadow-lg, $shadow-glow-orange;
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+}
+
+@mixin button-secondary {
+  @include button-base;
+  background: $color-white;
+  color: $color-orange;
+  border: 2px solid $color-orange;
+  border-radius: $radius-full;
+
+  &:hover:not(:disabled) {
+    background: $color-orange;
+    color: $color-white;
+  }
+}
+
+@mixin button-ghost {
+  @include button-base;
+  background: transparent;
+  color: $color-gray-dark;
+  border-radius: $radius-lg;
+
+  &:hover:not(:disabled) {
+    background: $color-gray-lighter;
+  }
+}
+
+// ---------------------------------------------
+// Form Elements
+// ---------------------------------------------
+@mixin input-base {
+  @include font-body;
+  width: 100%;
+  padding: $spacing-3 $spacing-4;
+  font-size: $font-size-base;
+  color: $color-black;
+  background: $color-white;
+  border: 2px solid $color-gray-lighter;
+  border-radius: $radius-lg;
+  transition: all $transition-base;
+
+  &::placeholder {
+    color: $color-gray-light;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-orange;
+    box-shadow: 0 0 0 4px rgba($color-orange, 0.1);
+  }
+
+  &:disabled {
+    background: $color-gray-lighter;
+    cursor: not-allowed;
+  }
+
+  &--error {
+    border-color: $color-error;
+
+    &:focus {
+      box-shadow: 0 0 0 4px rgba($color-error, 0.1);
+    }
+  }
+}
+
+// ---------------------------------------------
+// Animations
+// ---------------------------------------------
+@mixin fade-in($duration: $transition-base) {
+  animation: fadeIn $duration ease forwards;
+}
+
+@mixin slide-up($duration: $transition-base) {
+  animation: slideUp $duration ease forwards;
+}
+
+@mixin scale-in($duration: $transition-spring) {
+  animation: scaleIn $duration forwards;
+}
+
+@mixin bounce-in($duration: $transition-bounce) {
+  animation: bounceIn $duration forwards;
+}
+
+// Keyframes
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  20%, 60% {
+    transform: translateX(-5px);
+  }
+  40%, 80% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.3);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.3);
+  }
+  70% {
+    transform: scale(1);
+  }
+}
+
+@keyframes confetti {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+// Paw walk animation (for LoadingPaws)
+@keyframes pawStep {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(4px);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1) translateY(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+// Gentle wiggle (for errors - softer than shake)
+@keyframes gentleWiggle {
+  0%, 100% {
+    transform: translateX(0) rotate(0);
+  }
+  25% {
+    transform: translateX(-3px) rotate(-1deg);
+  }
+  75% {
+    transform: translateX(3px) rotate(1deg);
+  }
+}
+
+// Checkmark draw (for success)
+@keyframes checkDraw {
+  0% {
+    stroke-dashoffset: 24;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+// Tail wag (for success accents)
+@keyframes tailWag {
+  0%, 100% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+}
+
+// Paw bounce (for success decorations)
+@keyframes pawBounce {
+  0% {
+    opacity: 0;
+    transform: scale(0) translateY(10px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.2) translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+// Subtle glow pulse (for success container)
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba($color-teal, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba($color-teal, 0.2);
+  }
+}
+
+// Float gentle (for empty state)
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(3deg);
+  }
+}
+
+// ---------------------------------------------
+// Decorative Elements
+// ---------------------------------------------
+@mixin paw-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 35c-2.5 0-4.5 2-4.5 4.5s2 4.5 4.5 4.5 4.5-2 4.5-4.5-2-4.5-4.5-4.5zm-8-8c-1.5 0-2.5 1-2.5 2.5s1 2.5 2.5 2.5 2.5-1 2.5-2.5-1-2.5-2.5-2.5zm16 0c-1.5 0-2.5 1-2.5 2.5s1 2.5 2.5 2.5 2.5-1 2.5-2.5-1-2.5-2.5-2.5zm-12-6c-1.5 0-2.5 1-2.5 2.5s1 2.5 2.5 2.5 2.5-1 2.5-2.5-1-2.5-2.5-2.5zm8 0c-1.5 0-2.5 1-2.5 2.5s1 2.5 2.5 2.5 2.5-1 2.5-2.5-1-2.5-2.5-2.5z' fill='%23FF6B35' fill-opacity='0.05'/%3E%3C/svg%3E");
+}
+
+@mixin organic-blob($color, $size: 300px) {
+  position: absolute;
+  width: $size;
+  height: $size;
+  background: $color;
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  filter: blur(40px);
+  opacity: 0.3;
+  animation: float 8s ease-in-out infinite;
+}
+
+// ---------------------------------------------
+// Accessibility
+// ---------------------------------------------
+@mixin focus-ring {
+  &:focus-visible {
+    outline: 3px solid $color-orange;
+    outline-offset: 2px;
+  }
+}
+
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

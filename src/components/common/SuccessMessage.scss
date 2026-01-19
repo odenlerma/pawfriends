@@ -1,0 +1,184 @@
+// ==============================================
+// PawFriends - SuccessMessage Styles
+// ==============================================
+
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.success-message {
+  @include flex-column;
+  @include flex-center;
+  text-align: center;
+
+  &__icon-container {
+    position: relative;
+    margin-bottom: $spacing-4;
+  }
+
+  &__icon-bg {
+    @include flex-center;
+    width: 80px;
+    height: 80px;
+    background: rgba($color-teal, 0.1);
+    border-radius: $radius-full;
+    animation: glowPulse 2s ease-in-out infinite;
+  }
+
+  &__check {
+    width: 40px;
+    height: 40px;
+    color: $color-teal;
+    stroke-dasharray: 24;
+    stroke-dashoffset: 24;
+    animation: checkDraw 0.5s ease forwards 0.2s;
+  }
+
+  &__paw {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    color: $color-orange;
+    opacity: 0;
+    animation: pawBounce 0.5s ease forwards;
+
+    &--left {
+      top: -5px;
+      left: -10px;
+      transform: rotate(-25deg);
+      animation-delay: 0.5s;
+    }
+
+    &--right {
+      bottom: -5px;
+      right: -10px;
+      transform: rotate(25deg);
+      animation-delay: 0.7s;
+    }
+  }
+
+  &__title {
+    @include font-display;
+    font-size: $font-size-xl;
+    color: $color-teal;
+    margin: 0 0 $spacing-2;
+    animation: slideUp 0.4s ease forwards;
+    animation-delay: 0.3s;
+    opacity: 0;
+  }
+
+  &__text {
+    @include text-base;
+    color: $color-gray-dark;
+    margin: 0;
+    max-width: 280px;
+    animation: slideUp 0.4s ease forwards;
+    animation-delay: 0.4s;
+    opacity: 0;
+  }
+
+  &__content {
+    margin-top: $spacing-6;
+    animation: slideUp 0.4s ease forwards;
+    animation-delay: 0.5s;
+    opacity: 0;
+  }
+
+  // Variants
+  &--inline {
+    flex-direction: row;
+    gap: $spacing-3;
+    padding: $spacing-4;
+    background: rgba($color-teal, 0.08);
+    border-radius: $radius-lg;
+    text-align: left;
+
+    .success-message__icon-container {
+      margin-bottom: 0;
+    }
+
+    .success-message__icon-bg {
+      width: 40px;
+      height: 40px;
+    }
+
+    .success-message__check {
+      width: 20px;
+      height: 20px;
+    }
+
+    .success-message__paw {
+      display: none;
+    }
+
+    .success-message__title {
+      font-size: $font-size-base;
+      margin: 0;
+    }
+
+    .success-message__text {
+      font-size: $font-size-sm;
+    }
+  }
+
+  &--card {
+    padding: $spacing-8;
+  }
+
+  &--fullscreen {
+    min-height: 60vh;
+    padding: $spacing-10;
+
+    .success-message__icon-bg {
+      width: 120px;
+      height: 120px;
+    }
+
+    .success-message__check {
+      width: 60px;
+      height: 60px;
+    }
+
+    .success-message__paw {
+      width: 28px;
+      height: 28px;
+
+      &--left {
+        top: -10px;
+        left: -15px;
+      }
+
+      &--right {
+        bottom: -10px;
+        right: -15px;
+      }
+    }
+
+    .success-message__title {
+      font-size: $font-size-2xl;
+    }
+  }
+
+  // Reduced motion support
+  @media (prefers-reduced-motion: reduce) {
+    .success-message__check {
+      animation: none;
+      stroke-dashoffset: 0;
+    }
+
+    .success-message__paw {
+      animation: none;
+      opacity: 1;
+    }
+
+    .success-message__icon-bg {
+      animation: none;
+    }
+
+    .success-message__title,
+    .success-message__text,
+    .success-message__content {
+      animation: none;
+      opacity: 1;
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "session_id": "f949c318-d98b-48cc-8bbc-19a273335823",
+  "prompts": [
+    "Using `claude.md` as a guide, install all necessary third-party packages. Additionally, set up aliases as specified in the file directory. After each installation or alias setup, validate that the package is installed or the alias functions as expected in 1-2 lines and, if any validation fails, attempt a minimal correction before proceeding."
+  ]
+}

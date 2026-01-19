@@ -1,0 +1,185 @@
+// ==============================================
+// PawFriends - PetCard Styles
+// ==============================================
+
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.pet-card {
+  @include card;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all $transition-base;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-card-hover;
+  }
+
+  &--inactive {
+    opacity: 0.7;
+
+    .pet-card__photo {
+      filter: grayscale(50%);
+    }
+  }
+
+  // Photo container
+  &__photo-container {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background: $color-cream-dark;
+  }
+
+  &__photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform $transition-slow;
+
+    .pet-card:hover & {
+      transform: scale(1.05);
+    }
+  }
+
+  &__photo-placeholder {
+    @include flex-center;
+    width: 100%;
+    height: 100%;
+    color: $color-gray-light;
+
+    svg {
+      width: 60px;
+      height: 60px;
+      opacity: 0.5;
+    }
+  }
+
+  // Gender badge
+  &__gender {
+    position: absolute;
+    top: $spacing-3;
+    right: $spacing-3;
+    @include flex-center;
+    width: 36px;
+    height: 36px;
+    border-radius: $radius-full;
+    background: $color-white;
+    box-shadow: $shadow-md;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    &--male {
+      color: $color-teal;
+    }
+
+    &--female {
+      color: $color-pink;
+    }
+  }
+
+  // Status badge
+  &__status {
+    position: absolute;
+    bottom: $spacing-3;
+    left: $spacing-3;
+    padding: $spacing-1 $spacing-3;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: rgba($color-black, 0.7);
+    color: $color-white;
+    border-radius: $radius-full;
+  }
+
+  // Content
+  &__content {
+    padding: $spacing-4;
+    flex: 1;
+  }
+
+  &__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: $spacing-2;
+    margin-bottom: $spacing-1;
+  }
+
+  &__name {
+    @include font-display;
+    font-size: $font-size-xl;
+    color: $color-black;
+    margin: 0;
+  }
+
+  &__age {
+    @include text-sm;
+    color: $color-gray;
+    flex-shrink: 0;
+  }
+
+  &__breed {
+    @include text-sm;
+    color: $color-orange;
+    font-weight: $font-weight-medium;
+    margin-bottom: $spacing-2;
+  }
+
+  &__bio {
+    @include text-sm;
+    @include line-clamp(2);
+    color: $color-gray-dark;
+    margin: 0;
+  }
+
+  // Actions
+  &__actions {
+    display: flex;
+    border-top: 1px solid $color-gray-lighter;
+  }
+
+  &__action {
+    flex: 1;
+    @include flex-center;
+    gap: $spacing-2;
+    padding: $spacing-3;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $color-gray-dark;
+    text-decoration: none;
+    transition: all $transition-fast;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    &:not(:last-child) {
+      border-right: 1px solid $color-gray-lighter;
+    }
+
+    &--edit:hover {
+      background: rgba($color-teal, 0.1);
+      color: $color-teal;
+    }
+
+    &--toggle:hover {
+      background: rgba($color-orange, 0.1);
+      color: $color-orange;
+    }
+
+    &--delete:hover {
+      background: rgba($color-heart, 0.1);
+      color: $color-heart;
+    }
+
+    @include focus-ring;
+  }
+}

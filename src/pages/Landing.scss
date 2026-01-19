@@ -1,0 +1,327 @@
+// ==============================================
+// PawFriends - Landing Page Styles
+// ==============================================
+
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.landing {
+  min-height: 100vh;
+  background: $color-cream;
+  overflow-x: hidden;
+
+  // Header
+  &__header {
+    position: sticky;
+    top: 0;
+    z-index: $z-sticky;
+    background: rgba($color-cream, 0.95);
+    backdrop-filter: blur(12px);
+  }
+
+  &__header-container {
+    @include container;
+    @include flex-between;
+    height: $header-height;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2;
+    text-decoration: none;
+
+    &--small {
+      .landing__logo-icon {
+        width: 32px;
+        height: 32px;
+      }
+
+      .landing__logo-text {
+        font-size: $font-size-lg;
+      }
+    }
+  }
+
+  &__logo-icon {
+    @include flex-center;
+    width: 40px;
+    height: 40px;
+    color: $color-orange;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__logo-text {
+    @include font-display;
+    font-size: $font-size-2xl;
+    color: $color-orange;
+
+    span {
+      color: $color-pink;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: $spacing-4;
+  }
+
+  &__nav-link {
+    color: $color-gray-dark;
+    font-weight: $font-weight-medium;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: $color-orange;
+    }
+  }
+
+  // Hero
+  &__hero {
+    @include container;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-12;
+    padding-top: $spacing-12;
+    padding-bottom: $spacing-16;
+
+    @include lg {
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      min-height: calc(100vh - $header-height);
+    }
+  }
+
+  &__hero-content {
+    text-align: center;
+
+    @include lg {
+      text-align: left;
+    }
+  }
+
+  &__title {
+    @include heading-1;
+    margin-bottom: $spacing-6;
+    line-height: 1.1;
+  }
+
+  &__title-highlight {
+    background: $gradient-primary;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  &__subtitle {
+    @include text-lg;
+    color: $color-gray-dark;
+    margin-bottom: $spacing-8;
+    max-width: 500px;
+
+    @include max-lg {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  &__cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-3;
+
+    @include lg {
+      align-items: flex-start;
+    }
+  }
+
+  &__cta-note {
+    @include text-sm;
+    color: $color-gray;
+  }
+
+  // Hero visual
+  &__hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+
+    @include max-lg {
+      display: none;
+    }
+  }
+
+  &__card {
+    position: absolute;
+    width: 200px;
+    background: $color-white;
+    border-radius: $radius-2xl;
+    box-shadow: $shadow-xl;
+    padding: $spacing-4;
+    animation: float 4s ease-in-out infinite;
+
+    &--1 {
+      left: 10%;
+      top: 10%;
+      transform: rotate(-8deg);
+      animation-delay: 0s;
+    }
+
+    &--2 {
+      right: 10%;
+      bottom: 10%;
+      transform: rotate(8deg);
+      animation-delay: 2s;
+    }
+  }
+
+  &__card-img {
+    @include flex-center;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: $radius-xl;
+    margin-bottom: $spacing-3;
+
+    svg {
+      width: 60px;
+      height: 60px;
+      color: $color-orange;
+      opacity: 0.3;
+    }
+  }
+
+  &__card-name {
+    @include font-display;
+    font-size: $font-size-lg;
+    color: $color-black;
+  }
+
+  &__match-heart {
+    @include flex-center;
+    width: 80px;
+    height: 80px;
+    background: $color-white;
+    border-radius: $radius-full;
+    box-shadow: $shadow-glow-heart;
+    animation: heartbeat 2s ease-in-out infinite;
+    z-index: 2;
+
+    svg {
+      width: 40px;
+      height: 40px;
+      color: $color-heart;
+    }
+  }
+
+  // Features
+  &__features {
+    @include container;
+    padding-top: $spacing-16;
+    padding-bottom: $spacing-16;
+    text-align: center;
+  }
+
+  &__features-title {
+    @include heading-2;
+    margin-bottom: $spacing-12;
+  }
+
+  &__features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: $spacing-8;
+  }
+
+  &__feature {
+    @include card;
+    padding: $spacing-8;
+    text-align: center;
+    animation: slideUp 0.5s ease forwards;
+    opacity: 0;
+  }
+
+  &__feature-icon {
+    @include flex-center;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto $spacing-4;
+    background: $gradient-primary;
+    color: $color-white;
+    border-radius: $radius-full;
+    @include font-display;
+    font-size: $font-size-xl;
+    box-shadow: $shadow-glow-orange;
+  }
+
+  &__feature-title {
+    @include font-display;
+    font-size: $font-size-xl;
+    margin-bottom: $spacing-3;
+  }
+
+  &__feature-desc {
+    @include text-base;
+    color: $color-gray-dark;
+    margin: 0;
+  }
+
+  // CTA Section
+  &__cta-section {
+    @include container;
+    padding: $spacing-16 $spacing-4;
+    text-align: center;
+    background: $gradient-primary;
+    border-radius: $radius-3xl;
+    margin-bottom: $spacing-16;
+    color: $color-white;
+
+    h2 {
+      @include heading-3;
+      margin-bottom: $spacing-3;
+      color: $color-white;
+    }
+
+    p {
+      @include text-lg;
+      margin-bottom: $spacing-6;
+      opacity: 0.9;
+    }
+
+    .btn--secondary {
+      background: $color-white;
+      color: $color-orange;
+      border-color: $color-white;
+
+      &:hover {
+        background: $color-cream;
+      }
+    }
+  }
+
+  // Footer
+  &__footer {
+    border-top: 1px solid $color-gray-lighter;
+    padding: $spacing-8 0;
+  }
+
+  &__footer-content {
+    @include container;
+    @include flex-center;
+    flex-direction: column;
+    gap: $spacing-3;
+  }
+
+  &__footer-text {
+    @include text-sm;
+    color: $color-gray;
+    margin: 0;
+  }
+}

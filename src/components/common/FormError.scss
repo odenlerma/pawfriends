@@ -1,0 +1,65 @@
+// ==============================================
+// PawFriends - FormError Styles
+// ==============================================
+
+@use 'sass:color';
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.form-error {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-3;
+  padding: $spacing-4;
+  background: linear-gradient(
+    135deg,
+    rgba(#FFF5F0, 0.95),
+    rgba($color-error, 0.08)
+  );
+  border: 1px solid rgba($color-error, 0.15);
+  border-left: 3px solid $color-error;
+  border-radius: $radius-lg;
+  animation: gentleWiggle 0.5s ease;
+
+  &__icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    color: $color-error;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-1;
+    padding-top: 2px;
+  }
+
+  &__message {
+    @include font-body;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: color.adjust($color-error, $lightness: -10%);
+    line-height: 1.5;
+  }
+
+  &__tip {
+    @include font-body;
+    font-size: $font-size-xs;
+    color: $color-gray;
+    line-height: 1.4;
+  }
+
+  // Reduced motion support
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}

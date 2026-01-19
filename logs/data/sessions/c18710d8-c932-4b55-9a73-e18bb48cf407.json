@@ -1,0 +1,6 @@
+{
+  "session_id": "c18710d8-c932-4b55-9a73-e18bb48cf407",
+  "prompts": [
+    "look into issue where upon api failure or error. it does not display any error message"
+  ]
+}

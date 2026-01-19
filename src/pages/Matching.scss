@@ -1,0 +1,116 @@
+// ==============================================
+// PawFriends - Matching Page Styles
+// ==============================================
+
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.matching {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: $spacing-4 0;
+
+  @include md {
+    padding: $spacing-6 0;
+  }
+
+  &__container {
+    @include container;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  // Header
+  &__header {
+    text-align: center;
+    margin-bottom: $spacing-6;
+    animation: slideUp 0.5s ease forwards;
+
+    @include md {
+      margin-bottom: $spacing-8;
+    }
+  }
+
+  &__title {
+    @include heading-3;
+    margin-bottom: $spacing-2;
+  }
+
+  &__subtitle {
+    @include text-base;
+    color: $color-gray;
+    margin: 0;
+  }
+
+  // Empty state
+  &__empty {
+    @include flex-center;
+    flex-direction: column;
+    flex: 1;
+    text-align: center;
+    padding: $spacing-8;
+    background: $color-white;
+    border-radius: $radius-2xl;
+    box-shadow: $shadow-card;
+    animation: slideUp 0.5s ease forwards;
+    animation-delay: 0.1s;
+    opacity: 0;
+
+    h2 {
+      @include font-display;
+      font-size: $font-size-2xl;
+      margin-bottom: $spacing-2;
+    }
+
+    p {
+      @include text-base;
+      color: $color-gray;
+      margin-bottom: $spacing-6;
+    }
+  }
+
+  // Pet selector
+  &__selector {
+    margin-bottom: $spacing-6;
+    animation: slideUp 0.5s ease forwards;
+    animation-delay: 0.1s;
+    opacity: 0;
+
+    @include md {
+      margin-bottom: $spacing-8;
+    }
+  }
+
+  // Swipe area
+  &__swipe-area {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 500px;
+    animation: slideUp 0.5s ease forwards;
+    animation-delay: 0.2s;
+    opacity: 0;
+
+    @include md {
+      min-height: 600px;
+    }
+  }
+
+  &__select-prompt {
+    @include flex-center;
+    padding: $spacing-8;
+    background: rgba($color-white, 0.5);
+    border-radius: $radius-2xl;
+    backdrop-filter: blur(8px);
+
+    p {
+      @include text-lg;
+      color: $color-gray-dark;
+      text-align: center;
+      margin: 0;
+    }
+  }
+}

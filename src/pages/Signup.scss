@@ -1,0 +1,181 @@
+// ==============================================
+// PawFriends - Signup Page Styles
+// ==============================================
+
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.signup {
+  min-height: 100vh;
+  @include flex-center;
+  padding: $spacing-4;
+  background: $color-cream;
+  background-image:
+    radial-gradient(circle at 100% 100%, rgba($color-orange, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 0% 0%, rgba($color-teal, 0.1) 0%, transparent 50%);
+
+  &__container {
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-8;
+  }
+
+  // Logo
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2;
+    text-decoration: none;
+    animation: slideUp 0.5s ease forwards;
+  }
+
+  &__logo-icon {
+    @include flex-center;
+    width: 48px;
+    height: 48px;
+    color: $color-orange;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__logo-text {
+    @include font-display;
+    font-size: $font-size-3xl;
+    color: $color-orange;
+
+    span {
+      color: $color-pink;
+    }
+  }
+
+  // Card
+  &__card {
+    @include card;
+    width: 100%;
+    padding: $spacing-8;
+    animation: slideUp 0.5s ease forwards;
+    animation-delay: 0.1s;
+    opacity: 0;
+    position: relative;
+    overflow: hidden;
+
+    &--success {
+      text-align: center;
+      padding: $spacing-10;
+      background: linear-gradient(
+        135deg,
+        rgba($color-teal, 0.03) 0%,
+        rgba($color-white, 1) 50%,
+        rgba($color-orange, 0.03) 100%
+      );
+    }
+  }
+
+  // Confetti pieces
+  &__confetti {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  &__confetti-piece {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    animation: signupConfetti 3s ease-out forwards;
+
+    @for $i from 1 through 8 {
+      &:nth-child(#{$i}) {
+        left: #{($i - 1) * 12 + 5}%;
+        animation-delay: #{$i * 0.08}s;
+
+        @if $i % 4 == 0 {
+          background: $color-orange;
+        } @else if $i % 4 == 1 {
+          background: $color-teal;
+        } @else if $i % 4 == 2 {
+          background: $color-pink;
+        } @else {
+          background: $color-heart;
+        }
+      }
+    }
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: $spacing-6;
+  }
+
+  &__title {
+    @include font-display;
+    font-size: $font-size-2xl;
+    margin-bottom: $spacing-2;
+  }
+
+  &__subtitle {
+    @include text-base;
+    color: $color-gray;
+    margin: 0;
+  }
+
+  // Form
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-5;
+  }
+
+  // Footer
+  &__footer {
+    text-align: center;
+    margin-top: $spacing-6;
+    padding-top: $spacing-6;
+    border-top: 1px solid $color-gray-lighter;
+
+    p {
+      @include text-sm;
+      color: $color-gray;
+      margin: 0;
+    }
+  }
+
+  &__link {
+    color: $color-orange;
+    font-weight: $font-weight-semibold;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  // Reduced motion support
+  @media (prefers-reduced-motion: reduce) {
+    .signup__confetti-piece {
+      animation: none;
+      display: none;
+    }
+  }
+}
+
+@keyframes signupConfetti {
+  0% {
+    transform: translateY(-20px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(400px) rotate(720deg);
+    opacity: 0;
+  }
+}

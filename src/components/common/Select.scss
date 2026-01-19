@@ -1,0 +1,123 @@
+// ==============================================
+// PawFriends - Select Styles
+// ==============================================
+
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.select-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2;
+
+  &--full-width {
+    width: 100%;
+  }
+
+  // Label
+  &__label {
+    @include font-body;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    color: $color-gray-dark;
+  }
+
+  // Select container
+  &__container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  // The select itself
+  &__select {
+    @include input-base;
+    appearance: none;
+    padding-right: $spacing-10;
+    cursor: pointer;
+    background: $color-white;
+
+    // Remove default arrow in IE
+    &::-ms-expand {
+      display: none;
+    }
+
+    // Placeholder styling (first disabled option)
+    &:invalid,
+    option[value=""][disabled] {
+      color: $color-gray-light;
+    }
+
+    option {
+      color: $color-black;
+      padding: $spacing-2;
+    }
+  }
+
+  // Chevron icon
+  &__icon {
+    position: absolute;
+    right: $spacing-3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-gray;
+    pointer-events: none;
+    transition: transform $transition-fast, color $transition-fast;
+
+    svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  }
+
+  // Focus state - rotate icon
+  &__select:focus ~ &__icon {
+    color: $color-orange;
+    transform: rotate(180deg);
+  }
+
+  // Error state
+  &--error {
+    .select-wrapper__select {
+      border-color: $color-error;
+
+      &:focus {
+        box-shadow: 0 0 0 4px rgba($color-error, 0.1);
+      }
+    }
+
+    .select-wrapper__icon {
+      color: $color-error;
+    }
+  }
+
+  // Error message
+  &__error {
+    @include text-sm;
+    color: $color-error;
+    display: flex;
+    align-items: center;
+    gap: $spacing-1;
+
+    &::before {
+      content: '!';
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1rem;
+      height: 1rem;
+      font-size: $font-size-xs;
+      font-weight: $font-weight-bold;
+      background: $color-error;
+      color: $color-white;
+      border-radius: 50%;
+    }
+  }
+
+  // Hint text
+  &__hint {
+    @include text-sm;
+    color: $color-gray;
+  }
+}

@@ -1,0 +1,175 @@
+// ==============================================
+// PawFriends - Typography
+// Font imports and text styles
+// ==============================================
+
+@use 'variables' as *;
+
+// ---------------------------------------------
+// Font Imports
+// Fredoka - Playful, rounded display font
+// Nunito - Friendly, readable body font
+// ---------------------------------------------
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&display=swap');
+
+// ---------------------------------------------
+// Base Typography
+// ---------------------------------------------
+body {
+  font-family: $font-body;
+  font-size: $font-size-base;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-base;
+  color: $color-black;
+}
+
+// ---------------------------------------------
+// Headings
+// ---------------------------------------------
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-display;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-tight;
+  letter-spacing: $letter-spacing-tight;
+  color: $color-black;
+}
+
+h1 {
+  font-size: $font-size-4xl;
+
+  @media (min-width: $breakpoint-md) {
+    font-size: $font-size-5xl;
+  }
+}
+
+h2 {
+  font-size: $font-size-3xl;
+
+  @media (min-width: $breakpoint-md) {
+    font-size: $font-size-4xl;
+  }
+}
+
+h3 {
+  font-size: $font-size-2xl;
+
+  @media (min-width: $breakpoint-md) {
+    font-size: $font-size-3xl;
+  }
+}
+
+h4 {
+  font-size: $font-size-xl;
+
+  @media (min-width: $breakpoint-md) {
+    font-size: $font-size-2xl;
+  }
+}
+
+h5 {
+  font-size: $font-size-lg;
+}
+
+h6 {
+  font-size: $font-size-base;
+}
+
+// ---------------------------------------------
+// Body Text
+// ---------------------------------------------
+p {
+  margin-bottom: $spacing-4;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.text-lg {
+  font-size: $font-size-lg;
+  line-height: $line-height-relaxed;
+}
+
+.text-sm {
+  font-size: $font-size-sm;
+}
+
+.text-xs {
+  font-size: $font-size-xs;
+}
+
+// ---------------------------------------------
+// Text Colors
+// ---------------------------------------------
+.text-primary {
+  color: $color-orange;
+}
+
+.text-secondary {
+  color: $color-teal;
+}
+
+.text-muted {
+  color: $color-gray;
+}
+
+.text-error {
+  color: $color-error;
+}
+
+.text-success {
+  color: $color-success;
+}
+
+// ---------------------------------------------
+// Text Utilities
+// ---------------------------------------------
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.font-medium {
+  font-weight: $font-weight-medium;
+}
+
+.font-semibold {
+  font-weight: $font-weight-semibold;
+}
+
+.font-bold {
+  font-weight: $font-weight-bold;
+}
+
+// ---------------------------------------------
+// Links
+// ---------------------------------------------
+a {
+  color: $color-orange;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-orange-dark;
+  }
+}
+
+// ---------------------------------------------
+// Selection
+// ---------------------------------------------
+::selection {
+  background: rgba($color-orange, 0.2);
+  color: $color-black;
+}

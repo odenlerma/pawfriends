@@ -1,0 +1,138 @@
+// ==============================================
+// PawFriends - Modal Styles
+// ==============================================
+
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: $z-modal;
+
+  // Overlay
+  &__overlay {
+    @include flex-center;
+    @include absolute-fill;
+    background: rgba($color-black, 0.5);
+    backdrop-filter: blur(4px);
+    padding: $spacing-4;
+    animation: fadeIn 200ms ease;
+  }
+
+  // Content container
+  &__content {
+    @include card;
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - #{$spacing-8});
+    overflow: hidden;
+    animation: modalSlideIn 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    // Sizes
+    &--sm {
+      width: 100%;
+      max-width: 400px;
+    }
+
+    &--md {
+      width: 100%;
+      max-width: 500px;
+    }
+
+    &--lg {
+      width: 100%;
+      max-width: 700px;
+    }
+
+    &--xl {
+      width: 100%;
+      max-width: 900px;
+    }
+
+    &--full {
+      width: 100%;
+      max-width: calc(100vw - #{$spacing-8});
+      height: calc(100vh - #{$spacing-8});
+    }
+  }
+
+  // Header
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: $spacing-5 $spacing-6;
+    border-bottom: 1px solid $color-gray-lighter;
+  }
+
+  // Title
+  &__title {
+    @include font-display;
+    font-size: $font-size-xl;
+    color: $color-black;
+    margin: 0;
+  }
+
+  // Close button
+  &__close {
+    @include flex-center;
+    width: 36px;
+    height: 36px;
+    border-radius: $radius-full;
+    color: $color-gray;
+    transition: all $transition-fast;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    &:hover {
+      background: $color-gray-lighter;
+      color: $color-black;
+    }
+
+    @include focus-ring;
+  }
+
+  // Body
+  &__body {
+    flex: 1;
+    padding: $spacing-6;
+    overflow-y: auto;
+  }
+
+  // Footer
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: $spacing-3;
+    padding: $spacing-4 $spacing-6;
+    border-top: 1px solid $color-gray-lighter;
+    background: $color-cream;
+    border-radius: 0 0 $radius-xl $radius-xl;
+  }
+
+  // Custom sections for composition
+  &__custom-header {
+    padding: $spacing-5 $spacing-6;
+    border-bottom: 1px solid $color-gray-lighter;
+  }
+
+  &__custom-body {
+    padding: $spacing-6;
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}

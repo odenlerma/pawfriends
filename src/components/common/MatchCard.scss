@@ -1,0 +1,159 @@
+// ==============================================
+// PawFriends - MatchCard Styles
+// ==============================================
+
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.match-card {
+  @include card-interactive;
+  display: flex;
+  align-items: center;
+  gap: $spacing-4;
+  padding: $spacing-4;
+
+  @include md {
+    padding: $spacing-5;
+  }
+
+  // Photos section
+  &__photos {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  &__photo {
+    width: 56px;
+    height: 56px;
+    border-radius: $radius-full;
+    overflow: hidden;
+    border: 3px solid $color-white;
+    box-shadow: $shadow-md;
+
+    @include md {
+      width: 64px;
+      height: 64px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &--mine {
+      z-index: 2;
+    }
+
+    &--other {
+      margin-left: -$spacing-4;
+      z-index: 1;
+    }
+  }
+
+  &__photo-fallback {
+    @include flex-center;
+    width: 100%;
+    height: 100%;
+    @include font-display;
+    font-size: $font-size-xl;
+    color: $color-white;
+    background: $gradient-primary;
+  }
+
+  &__heart {
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    @include flex-center;
+    width: 24px;
+    height: 24px;
+    background: $color-white;
+    border-radius: $radius-full;
+    box-shadow: $shadow-sm;
+    z-index: 3;
+
+    svg {
+      width: 14px;
+      height: 14px;
+      color: $color-heart;
+    }
+  }
+
+  // Info section
+  &__info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__names {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2;
+    flex-wrap: wrap;
+    margin-bottom: $spacing-1;
+  }
+
+  &__name {
+    @include font-display;
+    font-size: $font-size-lg;
+    color: $color-black;
+
+    &--mine {
+      color: $color-gray;
+    }
+
+    &--other {
+      display: flex;
+      align-items: center;
+      gap: $spacing-1;
+    }
+  }
+
+  &__and {
+    color: $color-pink;
+    font-weight: $font-weight-medium;
+  }
+
+  &__gender {
+    @include flex-center;
+    width: 18px;
+    height: 18px;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    &--male {
+      color: $color-teal;
+    }
+
+    &--female {
+      color: $color-pink;
+    }
+  }
+
+  &__breed {
+    @include text-sm;
+    color: $color-orange;
+    font-weight: $font-weight-medium;
+    margin: 0 0 $spacing-1;
+    @include truncate;
+  }
+
+  &__owner {
+    @include text-sm;
+    color: $color-gray;
+    margin: 0 0 $spacing-1;
+    @include truncate;
+  }
+
+  &__date {
+    @include text-xs;
+    color: $color-gray-light;
+  }
+}

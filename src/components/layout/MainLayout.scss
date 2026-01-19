@@ -1,0 +1,42 @@
+// ==============================================
+// PawFriends - MainLayout Styles
+// ==============================================
+
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.main-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  &__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+// Protected route loading state
+.protected-route-loading {
+  @include flex-center;
+  flex-direction: column;
+  gap: $spacing-4;
+  min-height: 100vh;
+  color: $color-gray;
+
+  &__spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid $color-gray-lighter;
+    border-top-color: $color-orange;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
