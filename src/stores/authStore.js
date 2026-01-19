@@ -4,6 +4,7 @@
 
 import { create } from 'zustand'
 import { authService } from '../services/authService'
+import { setTokens } from '../services/apiClient'
 
 export const useAuthStore = create((set, get) => ({
   // State
@@ -18,6 +19,20 @@ export const useAuthStore = create((set, get) => ({
   initialize: async () => {
     try {
       set({ isLoading: true, error: null })
+
+      // Check for Supabase auth tokens in URL hash (email confirmation redirect)
+      const hash = window.location.hash
+      if (hash && hash.includes('access_token')) {
+        const params = new URLSearchParams(hash.substring(1))
+        const accessToken = params.get('access_token')
+        const refreshToken = params.get('refresh_token')
+
+        if (accessToken) {
+          // Store tokens and clear hash from URL
+          setTokens(accessToken, refreshToken)
+          window.history.replaceState(null, '', window.location.pathname)
+        }
+      }
 
       const session = await authService.getSession()
 
